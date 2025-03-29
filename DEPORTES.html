@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Imagen de Fondo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://png.pngtree.com/background/20230623/original/pngtree-background-sport-picture-image_3990798.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Cuadro de inicio de sesión */
+        .login-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            background: red;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: darkred;
+        }
+
+        /* Modal de registro */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            text-align: center;
+        }
+
+        /* Pantalla emergente (ocupa toda la pantalla) */
+        .welcome-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .welcome-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rectangle-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 80%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding-bottom: 20px;
+        }
+
+        .rectangle {
+            width: 100%;
+            height: 250px;
+            background-color: #ADD8E6;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .rectangle-label {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .welcome-close {
+            background: black;
+            margin-top: 10px;
+            padding: 5px;
+            width: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .welcome-close:hover {
+            background: darkred;
+        }
+
+        .rectangle-1 { 
+        background-image: url('https://img.freepik.com/free-vector/soccer-typographical-vintage-grunge-style-poster_225004-1132.jpg?w=2000'); 
+        }
+
+        .rectangle-2 { 
+        background-image: url('https://i.pinimg.com/736x/38/5c/9b/385c9b499f3457f798c9960e11975ad1.jpg'); 
+        }
+
+        .rectangle-3 { 
+        background-image: url('https://m.media-amazon.com/images/I/61W9XPISnXL._AC_UF894,1000_QL80_.jpg'); 
+        }
+
+        .rectangle-4 { 
+        background-image: url('https://png.pngtree.com/png-clipart/20211116/original/pngtree-spotlight-basketball-competition-poster-png-image_6938632.png'); 
+        }
+
+        .rectangle-5 { 
+        background-image: url('https://img.freepik.com/vector-gratis/plantilla-poster-futbol-americano_23-2148442787.jpg'); 
+        }
+
+        .rectangle-6 { 
+        background-image: url('https://thumbs.dreamstime.com/z/tennis-tournament-poster-template-racket-ball-sample-text-separate-layer-vector-illustration-179258750.jpg'); 
+        }
+
+        .rectangle-7 { 
+        background-image: url('https://image.isu.pub/141113201830-f0e9bc826fe9c2da7b90b84140e40aee/jpg/page_1_thumb_large.jpg'); 
+        }
+
+        .rectangle-8 { 
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnGmRS3dsX_FQ9cBM11QWly1UmZqwB69uF_w&s'); 
+        }
+
+        .rectangle-9 { 
+        background-image: url('https://www.shutterstock.com/shutterstock/photos/2569059925/display_1500/stock-vector-flyer-vector-template-for-chess-tournament-2569059925.jpg'); 
+        }
+
+        .rectangle-10 { 
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFOS9l0MEtHq3OB9d5NBL7h_51t0AjmrsVQ&s'); 
+        }
+
+        .rectangle-11 { 
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCU-TOs7n_PNWkIFgYG95R328volVGWr82pw&s'); 
+        }
+
+        .rectangle-12 { 
+        background-image: url('https://blog.vivanuncios.com.mx/wp-content/uploads/2016/10/las-5-categorias-mas-emocionantes-del-automovilismo.jpg'); 
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Cuadro de inicio de sesión -->
+    <div class="container">
+        <div class="login-box">
+            <h2>Inicio de Sesión</h2>
+            <input type="text" id="login-email" placeholder="Correo">
+            <input type="password" id="login-password" placeholder="Contraseña">
+            <button onclick="login()">Entrar</button>
+            <button onclick="openRegister()">Registro</button>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <h2>Registro</h2>
+            <input type="text" id="register-name" placeholder="Nombre Completo">
+            <input type="email" id="register-email" placeholder="Correo">
+            <input type="text" id="register-phone" placeholder="Teléfono">
+            <input type="text" id="register-username" placeholder="Apodo">
+            <input type="password" id="register-password" placeholder="Contraseña">
+            <button onclick="register()">Registrar</button>
+            <button onclick="closeRegister()">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Bienvenida -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <h1 id="welcomeMessage"></h1>
+            <div class="rectangle-container">
+
+                <!-- 12 Rectángulos Azul Claro -->
+                <div class="rectangle" onclick="openTab('Fútbol')">
+                    <div class="rectangle-label">Fútbol</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Natación')">
+                    <div class="rectangle-label">Natación</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Béisbol')">
+                    <div class="rectangle-label">Béisbol</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Baloncesto')">
+                    <div class="rectangle-label">Baloncesto</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Fútbol Americano')">
+                    <div class="rectangle-label">Fútbol Americano</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Tenis')">
+                    <div class="rectangle-label">Tenis</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Esgrima')">
+                    <div class="rectangle-label">Esgrima</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Atletismo')">
+                    <div class="rectangle-label">Atletismo</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Ajedrez')">
+                    <div class="rectangle-label">Ajedrez</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Hockey')">
+                    <div class="rectangle-label">Hockey</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Karate')">
+                    <div class="rectangle-label">Karate</div>
+                </div>
+
+                <div class="rectangle" onclick="openTab('Automovilismo')">
+                    <div class="rectangle-label">Automovilismo</div>
+                </div>
+
+            </div>
+            <button class="welcome-close" onclick="closeWelcomeModal()">X</button>
+        </div>
+    </div>
+
+    <script>
+        function openTab(sport) {
+            window.open("https://www.example.com/" + sport, "_blank");  // Aquí puedes poner la URL de cada deporte
+        }
+
+        function openRegister() {
+            document.getElementById("registerModal").style.display = "flex";
+        }
+
+        function closeRegister() {
+            document.getElementById("registerModal").style.display = "none";
+        }
+
+        function register() {
+            let name = document.getElementById("register-name").value;
+            let email = document.getElementById("register-email").value;
+            let phone = document.getElementById("register-phone").value;
+            let username = document.getElementById("register-username").value;
+            let password = document.getElementById("register-password").value;
+
+            if (name && email && phone && username && password) {
+                let userData = { name, email, phone, username, password };
+                localStorage.setItem("user-" + email, JSON.stringify(userData));
+                alert("Registro exitoso");
+                closeRegister();
+            } else {
+                alert("Por favor, completa todos los campos");
+            }
+        }
+
+        function login() {
+            let email = document.getElementById("login-email").value;
+            let password = document.getElementById("login-password").value;
+
+            let storedUser = localStorage.getItem("user-" + email);
+
+            if (storedUser) {
+                let user = JSON.parse(storedUser);
+                if (user.password === password) {
+                    document.getElementById("welcomeMessage").innerText = "Bienvenido, " + user.username + "!";
+                    document.getElementById("welcomeModal").style.display = "flex";
+                } else {
+                    alert("Contraseña incorrecta");
+                }
+            } else {
+                alert("Usuario no encontrado");
+            }
+        }
+
+        function closeWelcomeModal() {
+            document.getElementById("welcomeModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
